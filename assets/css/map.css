@@ -1,0 +1,883 @@
+body, html{
+	margin:0px;
+	height:100%;
+}
+#mapWindow{
+	overflow:hidden;
+}
+/*********  Map styles START ***********/
+a{
+    outline: 0;
+}
+h2{/* Dashboard main header */
+	float: left;
+	margin-right: 10px;
+	font-family: 'Roboto Condensed', sans-serif;
+	color: #555;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+h3{/* Dashboard Greetings */
+	padding-top: 8px;
+	color: #888;
+	font-weight: 400;
+	font-size: 12px;
+	text-align: right;
+	display: block;
+	width: 150px;
+	float: right;
+}
+label span{
+	color: #f30;
+	float: left;
+	display: block;
+	width: 8px;	
+}
+h95{/* Map SideBar Header */
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    display:block;
+    padding:12px 6px 9px 6px;
+    background-color:#999;
+    color:#FFF;
+    margin-bottom:1px;
+	text-transform:uppercase;
+}
+h96{/* Map SideBar Red Bullet */
+    color:#FF7D72;
+    font-family:Verdana, Geneva, sans-serif;
+}
+h97{/* Map SideBar Green Bullet */
+    color:#0F0;
+    font-family:Verdana, Geneva, sans-serif;
+}
+h98{/* Map SideBar Blue Bullet */
+    color:#0CF;
+    font-family:Verdana, Geneva, sans-serif;
+}
+h100{/* Inside Google API Content String */
+	display:none;
+}
+
+.infowindow{
+    font-family:Arial, Helvetica, sans-serif;
+    color: #000;
+}
+h102{/*********  alertBox ***********/
+	font-family:Arial, Helvetica, sans-serif;
+	text-indent: 100px;
+	display: block;
+	padding-top: 6px;
+}
+h103{/*********  listBox ***********/
+	font-family:Arial, Helvetica, sans-serif;
+	display: block;
+	text-align: center;
+	padding-top: 6px;
+	color: #555;
+	font-size: 14px;
+}
+#listBtn1{
+	background-color:#4285F4;
+	float:none;
+	width:100%;
+	height: 202px;
+    /* box-shadow: -3px 2px 4px rgba(0,0,0, .3);*/
+}
+.listBtnClass{
+	width:25%;
+	box-sizing:border-box;
+	height:20px;
+	float:left;
+	font-size:14px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFF;
+	text-align:center;
+}
+#side_bar{
+	position:fixed;
+	right:0px;
+    top:202px;
+	bottom:0px;
+    background-color:rgba(120, 120, 120, 0.85);
+	background-color:#f5f5f5;
+    width:449px;
+    border-left:1px solid #CCC;
+    z-index:1;
+    overflow-y:auto;	
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:14px;
+    /* box-shadow: -3px 2px 4px rgba(0,0,0, .3);*/
+}
+
+#side_bar a{
+    text-decoration:none;
+    display:block;
+    padding:0px 14px;
+	height:68px;
+	font-size:16px;
+    background-color:none;
+    margin-bottom:1px;
+	border-bottom:1px solid #DDD;
+    text-align:left;
+    color:#333;
+	line-height:3.8em;
+	background:url(images/downArrow.png) no-repeat 400px 10px;
+  
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+#side_bar a:hover{
+    background-color:#FFF;
+    color:#333;
+}
+#side_bar_drawer{
+
+}
+.drawerClass{
+	height:70px;
+	width:100%;
+	transition:height .25s ease-out;
+	overflow:hidden;
+	position: relative;
+	overflow: hidden;
+}
+.moreInfo{
+	position: absolute;
+	top: 570px;
+	width: 100%;
+	height: 30px;
+	background-color: #EFEFEF;
+	cursor: pointer;
+    text-align:center;
+}
+.moreInfo:hover{
+	background-color: #f90;	
+}
+#schlSearch input{
+	float: left;
+	height: 23px;
+	margin-top: 0px;
+	border: 0px;
+	border: none;
+	width: 340px;
+	text-indent: 14px;
+	background-color: #fff;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.0) inset;
+}
+#moreInfoWrapper{
+	position: fixed;
+	top: 0px;
+	left:0px;
+	right: 450px;
+	bottom: 0px;
+	background-color: rgba(220, 220, 220, .7);
+	z-index: 3;
+	display: none;
+}
+#moreInfoContainer{
+	position: absolute;
+	width: 500px;
+	height: 600px;
+	left: 50%;
+	margin-left: -250px;
+	top: 50%;
+	margin-top: -342px;
+	background-color:#fff;
+	z-index: 3;
+    box-shadow: 0px 2px 8px rgba(0,0,0, .3);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.moreInfoHeader{
+	width: 100%;
+	height: 80px;
+	margin-bottom: 10px;
+	background-color: #4285F4;
+}
+.moreInfoText{
+	width: 490px;
+	height: 490px;
+	background-color:#fff;
+	overflow: auto;
+}
+.moreInfoCloseBtn{
+	position: absolute;
+	z-index: 6;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	border: 2px solid #fff;
+	background-color: #f30;
+    box-shadow: 0px 2px 8px rgba(0,0,0, .3);
+    left: 50%;
+    margin-left: 255px;
+    top: 50%;
+    margin-top: -365px;
+    cursor: pointer;
+}
+.moreInfoCloseBtn:hover{
+	background-color: #bd2700;	
+}
+.schlProfile{
+	width: 130px;
+	height: 130px;
+	background-color: #999;
+	margin: 30px auto 0px;
+	border-radius: 100px;
+	background-image: url('../images/profile.png');
+	cursor: pointer;
+}
+#map_canvas{
+	position:absolute;
+	top:0px;
+	background-position:top;
+	left:0px;
+	right: 450px;
+	bottom: 0px;
+}
+#side_bar_key{
+	position:fixed;
+	height:60px;
+	width:450px;
+	right:0px;
+	top:0px;
+	background-color:#999;
+	cursor:pointer;
+}
+#backToDashboardBtn{
+	position: absolute;
+	right: -40px;
+	top: 10px;
+	z-index: 4;
+	height: 30px;
+	width: 150px;
+	background-color: #DDD;
+	cursor: pointer;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	transition: right .15s ease-out;
+}
+#backToDashboardBtn:hover{
+	right: 0px;	
+}
+
+#backToDashboardBtn:hover{
+	background-color: #FFF;
+}
+#searchBarWrapper{
+	position: absolute;
+	right: 50px;
+	top: 160px;
+	z-index: 4;
+	height: 30px;
+	width: 390px;
+	background-color: #FFF;
+	overflow: hidden;
+	border-radius: 30px;
+    box-shadow: 0px 2px 8px rgba(0,0,0, 0.4);	
+}
+.searchBtn{
+	width: 20px;
+	height: 20px;
+	background-color: #f90;
+	border-radius: 40px;
+	margin: 5px;
+	float: right;
+	cursor: pointer;
+	background-image: url('../images/magnify.png');	
+}
+.searchBtn:hover{
+	background-color: #bb7000;	
+}
+.helpBtn{
+	position: absolute;
+	right: 10px;
+	top: 160px;
+	z-index: 4;
+	height: 30px;
+	width: 30px;
+	background-color: #00bf00;
+	border-radius: 30px;
+	cursor: pointer;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.4);	
+	background-image: url('../images/question.png');	
+}
+.helpBtn:hover{
+	background-color: #f90;
+}
+.logoOnMapBtm{
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	z-index: 4;
+	height: 60px;
+	width: 60px;
+	border-radius: 60px;	
+	background-color: #FFF;
+    box-shadow: 0px 2px 8px rgba(0,0,0, .3);
+    cursor: pointer;
+    background-image: url('../images/lle-logoBtm.png');
+    background-size: cover;
+    border: 4px solid #fff;
+}
+.logoOnMapTop{
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	z-index: 5;
+	height: 60px;
+	width: 60px;
+	border-radius: 60px;	
+    cursor: pointer;
+    background-image: url('../images/lle-logoTop.png');
+    background-size: cover;
+    border: 4px solid #fff;
+	transition: transform 0s ease-out 0s;
+}
+.logoOnMapTop:hover{
+    transform: rotateZ(360deg);
+	transition: transform .5s ease-out 0s;
+}
+#testBoxWrapper{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	z-index: 10;
+	left: 50%;
+	top: 50%;
+	background-color: #fff;
+}
+.demo{
+	width: 150px;
+	height: 180px;
+}
+.logOff{
+	position: absolute;
+	width: 80px;
+	height: 64px;
+	z-index: 10;
+	top: 100px;
+	left: 10px;
+	background-color: #fff;
+	border-radius: 4px;
+	display: none;
+    box-shadow: 0px 2px 4px rgba(0,0,0, .3);
+}
+.logOff input{
+	background-color: #fff;
+	border: 0px;
+	box-shadow:  0 1px 2px rgba(0, 0, 0, 0.0) inset;
+	font-size: 14px;
+	width: 100%;
+	cursor: pointer;
+	margin: 0px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+}
+.logOff input:hover{
+	background-color: #4285f4;
+	color: #fff;	
+}
+.arrow-up {
+	position: absolute;
+	margin-top: -8px;
+	left:50%;
+	margin-left: -8px;
+	width: 0; 
+	height: 0; 
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;	
+	border-bottom: 8px solid white;
+}
+
+/*********  Map styles END ***********/
+
+
+h11{/* Index Sign in Btn */
+	color:#FFF;
+	font-size:16px;
+	font-family:Arial, Helvetica, sans-serif;	
+}
+
+
+h14{/* Index logo */
+	display:block;
+	width:340px;
+	padding-right:30px;
+	height:100%;
+	left:0px;
+	position:absolute;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight:700;	
+	color:#333;
+	font-size:46px;
+	text-align:right;
+	display: table;
+  	width: 340px;
+  	height: 70px;
+  	text-align: center;
+  	background-image: url('../images/lle-logo-this.png');
+  	background-repeat: no-repeat;
+  	background-position: center center;
+		
+}
+h15{/* description in drawer*/
+	display:block;
+	margin-right: 20px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	margin-top:8px;
+	color: #555;
+	max-height: 180px;
+	text-align:left;
+	padding:0px 20px 0px 20px;
+}
+h16{/* Drawer headers*/
+	font-family: 'Roboto', sans-serif;
+	color:#1d5e83;
+	font-size:14px;
+	text-transform: uppercase;
+	font-weight: 500;
+	display:block;
+	margin-top:16px;
+	text-align:left;
+	padding:0px 30px 0px 20px;
+}
+h17{/* Drawer title Numbers*/
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	font-weight: 900;
+	color:#1d5e83;
+}
+h18{/* Drawer header Numbers*/
+	color: #888;
+}
+h19{/* moreInfo text*/
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	line-height: 1.5em;
+	display: block;
+	padding: 30px;
+	border-bottom: 1px solid #ddd;
+}
+h20{
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #777;
+	text-indent: 10px;
+	display: block;
+	padding-top: 6px;
+}
+h21{
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #FFF;
+	text-align: center;
+	display: block;
+	padding-top: 6px;
+}
+h22{
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	height: 21px;
+	color: #BBB;
+	display: block;
+	width: 100px;
+	float: left;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+iframe{
+ 	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100% !important;
+	height: 100% !important;	
+}
+
+/* End of global*/
+#navBar{
+	height:34px;
+	width:100%;
+	background-color:#222;
+	position:absolute;
+	top:0px;
+	z-index:2;	
+}
+#introContent{
+	display:inline-block;
+	box-sizing:border-box;
+	max-width:600px;
+	position:absolute;
+	padding:18px 40px 14px 0px;
+	line-height:1.6em;
+	left:400px;
+	right:240px;
+	color:#333;
+	font-family:Arial, Helvetica, sans-serif;
+	
+}
+#introCover{
+	position:fixed;
+	background-color:#004B81;
+	left:0px;
+	right:0px;
+	top:0px;
+	bottom:0px;
+	z-index:2;
+	
+}
+#cover1{
+	background:url(../images/class-1.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	background-color: #f90;
+	z-index:9;
+}
+#cover2{
+	background:url(../images/class-2.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;	
+  	background-color: #f30;
+	z-index:8;
+	display: none;
+}
+#cover3{
+	background:url(../images/class-3.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+  	background-color: #AAA;
+	z-index:7;
+	display: none;	
+}
+.coverClass{
+	position:absolute;
+	left:0px;
+	right:0px;
+	top:0px;
+	bottom:0px;
+}
+#homeBtnWrapper{
+	height:34px;
+	width:100%;
+	margin:0 auto;
+}
+#discBar{
+	min-height:70px;
+	min-width:140px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	background-color:rgba(255, 255, 255, 0.0);
+	z-index:10;	
+}
+
+span {
+ 	display: table-cell;
+ 	vertical-align: middle;    
+}
+
+/****************************** Home/Logon Page STARTS ******************************/
+.signInBoxRedirect{
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	left: 50%;
+	margin-left: -150px;
+	top:50%;
+	margin-top: -150px;
+}
+#signIn{
+	width:90px;
+  	height: 90px;
+	position:absolute;
+	right:24px;
+	top: 24px;
+	background-color:#f90;
+	cursor:pointer;
+	transition: background-color .15s linear;
+	cursor:pointer;	
+	display: table;
+  	text-align: center;	
+  	background-color:rgba(188, 156, 99, 0.8);
+}
+#signIn:hover{
+	background-color:#5C8D23;
+}
+.featured{
+	position: absolute;
+	width: 300px;
+	height: 150px;
+	right: 20px;
+	bottom: 20px;
+	z-index: 100;
+	color: #fff;
+	display: none;
+}
+.overlay{
+	position: fixed;
+	z-index: 100;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom: 0px;
+  	background-color:rgba(255, 255, 255, 0.8);
+  	display: none;
+}
+.closeOverlay{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width:40px;
+	height: 40px;
+	background-color: #333;
+	cursor: pointer;
+}
+.closeOverlay:hover{
+	background-color: #f90;	
+}
+.signInBox{
+	position: absolute;
+	z-index: 100;
+	top: 50%;
+	margin-top: -100px;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	height: 200px;
+  	display: none;
+}
+/****************************** Logon Page ENDS ******************************/
+
+
+/****************************** Input Fields STARTS ******************************/
+
+.dashboard-nav{
+	margin: 50px auto;
+	width: 1082px;
+	height: 20px;
+	border-bottom: 1px solid #DDD;
+}
+.dashboard-box{
+	margin: 0px auto;
+	width: 200px;
+	text-align: center;	
+}
+.floatLeft{
+	display: inline-block;
+	float: left;
+	margin-right: 20px;
+}
+.inputWrapper{
+	position: absolute;
+	top:0px;
+	left:0px;
+	right: 250px;
+}
+.container{
+	font-family: 'Roboto', sans-serif;
+	width: 1000px;
+	margin: 30px auto;
+	border-left: 1px solid #DFDFDF;
+	border-right: 1px solid #DFDFDF;
+	border-bottom: 2px solid #DDD;
+	padding: 40px 40px 40px 40px;
+	background-color: #fff;
+	font-size: 14px;
+	color: #444;
+}
+.containerIntro{
+	font-family: 'Roboto', sans-serif;
+	width: 1000px;
+	margin: 30px auto;
+	border-left: 1px solid #DFDFDF;
+	border-right: 1px solid #DFDFDF;
+	border-bottom: 2px solid #DDD;
+	padding: 40px 40px 40px 40px;
+	background-color: #fff;
+	font-size: 14px;
+	color: #444;
+	display: none;
+}
+label{
+	margin-bottom: 4px;
+	display:inline-block;
+}
+.logo{
+	margin: 50px auto 30px;
+	width: 90px;
+	height: 90px;
+	background-image: url('../images/lle-logo.png');
+	cursor: pointer;
+}
+input{
+	background-color:#F1F1F1;
+	border: 1px solid #DDD;
+	box-shadow:  0 1px 2px rgba(0, 0, 0, 0.07) inset;
+	font-size: 16px;
+    margin: 2px 6px 16px 0;
+    padding: 3px;
+}
+.mapBtns{
+	font-size: 12px;
+	background-color:#FFF;
+	box-shadow:none;
+	cursor: pointer;
+}
+.mapBtnsOpacity{
+	opacity: .35;
+	transition: opacity .25s linear;
+}
+#updateMap{
+	float: right;
+	background-color: #6aa348;
+	color: #fff;
+	border: 0px;
+}
+#goToDashboard{
+	
+}
+
+@-webkit-keyframes change-color {
+  0%   { background-color: #fff17a; }
+  100% { background-color: #f8f5dc; }
+}
+@-moz-keyframes change-color {
+  0%   { background-color: #fff17a; }
+  100% { background-color: #f8f5dc; }
+}
+@-o-keyframes change-color {
+  0%   { background-color: #fff17a; }
+  100% { background-color: #f8f5dc; }
+}
+@keyframes change-color {
+  0%   { background-color: #fff17a; }
+  100% { background-color: #f8f5dc; }
+}
+.alertBox{
+	margin: 0px auto;
+	z-index: 1;
+	width: 1082px;
+	height: 30px;
+	background-color: #f8f5dc;
+	-webkit-animation: change-color 2s ; /* Safari 4+ */
+	-moz-animation: change-color 2s ; /* Fx 5+ */
+	-o-animation: change-color 2s ; /* Opera 12+ */
+	animation: change-color 2s ; /* IE 10+ */
+}
+.alertBoxWrapper{
+	position: fixed;
+	left: 0px;
+	right: 251px;
+	height: 30px;
+	z-index: 10;	
+}
+#inputFields{
+	background-color:#F1F1F1;
+}
+hr{
+	height: 1px;
+    background-color: #EEE;
+    border: 0px;
+    width: 100%;
+}
+#schoolListField{
+	width: 242px;
+	position: fixed;
+	bottom: 0px;
+	top:60px;
+	right: 10px;
+	background-color: #fff;
+	border-top: 1px solid #DFDFDF;
+	border-left: 1px solid #DFDFDF;
+	border-right: 1px solid #DFDFDF;
+	display: block;	
+	box-sizing:border-box;
+	overflow: auto;	
+}
+.mapReturn{
+	width: 242px;
+	height: 30px;
+	background-color: #888;
+	position: fixed;
+	top:0px;
+	right: 10px;
+	cursor: pointer;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.mapReturn:hover{
+	background-color: #2ba8b9;	
+}
+.active{
+	background-color: #46bac9;
+	color: #fff !important;
+}
+.scrollAreaLn {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+}
+.scrollAreaLn li{
+	border-bottom: 1px solid #F9F9F9;
+	text-indent: 10px;
+	transition: background-color .15s linear;
+}
+.scrollAreaLn li:hover{
+	background-color: #EFEFEF;
+}
+.scrollAreaLn a{
+	text-decoration: none;
+	color: #777;
+	display: block;
+	height: 30px;
+	padding-top: 14px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.welcomeField{
+	font-family: 'Roboto', sans-serif;
+	width: 1000px;
+	height: 56px;
+	margin: 30px auto;
+	border-left: 4px solid #2BA8B9;
+	border-right: 1px solid #DFDFDF;
+	border-bottom: 2px solid #DDD;
+	padding: 4px 40px 4px 40px;
+	background-color: #fff;
+	font-size: 14px;
+	color: #444;
+}
+.mapDisc{
+	resize: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	padding: 6px;
+	box-sizing:border-box;
+}
+.about{
+	resize: none;
+	width: 100%;
+	height: 200px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	padding: 6px;
+	box-sizing:border-box;
+	border: 1px solid #CCC;
+}
+/****************************** Input Fields ENDS ******************************/
+
